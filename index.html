@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Livewall Dual Frames</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      min-width: 100vw;
+      height: 100vh;
+      width: 100vw;
+      box-sizing: border-box;
+      background: url('https://via.placeholder.com/1920x1080.png?text=Background+Image') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .frame-container {
+      width: 90vw;
+      max-width: 1800px;
+      display: flex;
+      gap: 2vw;
+      justify-content: center;
+      align-items: center;
+    }
+    .frame {
+      flex: 1 1 0;
+      aspect-ratio: 16 / 9;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #222;
+      min-width: 300px;
+      min-height: 169px;
+    }
+    .frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: #fff;
+    }
+    @media (max-width: 900px) {
+      .frame-container {
+        flex-direction: column;
+        gap: 4vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame-container">
+    <div class="frame">
+      <iframe src="https://livewall.no/open" allowfullscreen></iframe>
+    </div>
+    <div class="frame">
+      <iframe src="https://disneyplus.com" allowfullscreen></iframe>
+    </div>
+  </div>
+</body>
+</html>
