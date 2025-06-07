@@ -16,7 +16,7 @@
       height: 100vh;
       width: 100vw;
       box-sizing: border-box;
-      background: url('https://via.placeholder.com/1920x1080.png?text=Background+Image') no-repeat center center fixed;
+      background: url('https://perceptron.blob.core.windows.net/livewall/pexels-enginakyurt-2098578.jpg?sp=r&st=2025-06-07T05:44:32Z&se=2999-06-07T13:44:32Z&spr=https&sv=2024-11-04&sr=b&sig=oXvCqE%2Fc5W9a5bdclYsnsCVyryydkzhEakWEzZs8CKA%3D') no-repeat center center fixed;
       background-size: cover;
       display: flex;
       align-items: center;
@@ -47,6 +47,32 @@
       display: block;
       background: #fff;
     }
+    .controls {
+      position: fixed;
+      bottom: 5px;
+      right: 5px;
+      display: flex;
+      gap: 5px;
+      opacity: 0.05;
+      transition: opacity 0.3s ease;
+    }
+    .controls:hover {
+      opacity: 0.8;
+    }
+    .controls a {
+      padding: 4px 8px;
+      background: rgba(0, 0, 0, 0.3);
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      border-radius: 2px;
+      font-family: Arial, sans-serif;
+      cursor: pointer;
+      font-size: 11px;
+    }
+    .controls a:hover {
+      background: rgba(0, 0, 0, 0.6);
+      color: rgba(255, 255, 255, 0.9);
+    }
     @media (max-width: 900px) {
       .frame-container {
         flex-direction: column;
@@ -54,15 +80,58 @@
       }
     }
   </style>
+  <script>
+    const IFRAME_ZOOM_LEVEL = 0.4; // Adjust this value to change zoom level
+
+    function setIframeZoom() {
+      const iframes = document.querySelectorAll('.frame iframe');
+      iframes.forEach(iframe => {
+        iframe.style.transform = `scale(${IFRAME_ZOOM_LEVEL})`;
+        iframe.style.transformOrigin = '0 0';
+        iframe.style.width = `${100 / IFRAME_ZOOM_LEVEL}%`;
+        iframe.style.height = `${100 / IFRAME_ZOOM_LEVEL}%`;
+      });
+    }
+
+    function changeBackground() {
+      const newUrl = prompt('Enter new background image URL:');
+      if (newUrl) {
+        document.body.style.backgroundImage = `url('${newUrl}')`;
+      }
+    }
+
+    function changeStreamingUrl() {
+      const newUrl = prompt('Enter new streaming service URL:');
+      if (newUrl) {
+        const streamingIframe = document.querySelector('.frame iframe[src*="youtube"]');
+        if (streamingIframe) {
+          streamingIframe.src = newUrl;
+        }
+      }
+    }
+
+    // Run when the document is fully loaded
+    document.addEventListener('DOMContentLoaded', setIframeZoom);
+  </script>
 </head>
 <body>
   <div class="frame-container">
     <div class="frame">
-      <iframe src="https://livewall.no/open" allowfullscreen></iframe>
+      <iframe 
+        src="https://www.youtube.com/embed/B4-L2nfGcuE?autoplay=1&mute=1" 
+        allowfullscreen 
+        allow="fullscreen; autoplay; encrypted-media; picture-in-picture"
+        sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
+        referrerpolicy="no-referrer"
+      ></iframe>
     </div>
     <div class="frame">
-      <iframe src="https://disneyplus.com" allowfullscreen></iframe>
+      <iframe src="https://livewall.no/open" allowfullscreen></iframe>
     </div>
+  </div>
+  <div class="controls">
+    <a onclick="changeBackground()">Change Background</a>
+    <a onclick="changeStreamingUrl()">Change Stream URL</a>
   </div>
 </body>
 </html>
