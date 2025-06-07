@@ -21,12 +21,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding-left: 16px;
+      padding-right: 16px;
     }
     .frame-container {
-      width: 90vw;
-      max-width: 1800px;
+      width: 100%;
+      max-width: none;
       display: flex;
-      gap: 2vw;
+      gap: 16px;
+      box-sizing: border-box;
+      padding-left: 0;
+      padding-right: 0;
       justify-content: center;
       align-items: center;
     }
@@ -34,11 +39,11 @@
       flex: 1 1 0;
       aspect-ratio: 16 / 9;
       box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      border-radius: 16px;
+      border-radius: 8px;
       overflow: hidden;
       background: #222;
-      min-width: 300px;
-      min-height: 169px;
+      min-width: 0;
+      min-height: 0;
     }
     .frame iframe {
       width: 100%;
@@ -76,7 +81,9 @@
     @media (max-width: 900px) {
       .frame-container {
         flex-direction: column;
-        gap: 4vw;
+        gap: 16px;
+        padding-left: 0;
+        padding-right: 0;
       }
     }
   </style>
